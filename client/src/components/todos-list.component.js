@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+const db_uri = process.env.MONGODB_URI + '/todos/' || 'http://localhost:4000/todos/';
+
 const Todo = props => (
     <tr>
         <td className={props.todo.todo_completed ? 'completed' : ''}>{props.todo.todo_description}</td>
@@ -21,7 +23,7 @@ export default class TodosList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/todos/')
+        axios.get(db_uri)
             .then(response => {
                 this.setState({ todos: response.data });
             })

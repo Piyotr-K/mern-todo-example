@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+const db_uri = process.env.MONGODB_URI + '/todos/' || 'http://localhost:4000/todos/';
+
 export default class CreateTodo extends Component {
 
     constructor(props) {
@@ -54,7 +56,7 @@ export default class CreateTodo extends Component {
         };
 
 
-        axios.post('http://localhost:4000/todos/add', newTodo)
+        axios.post(db_uri + '/add/', newTodo)
             .then(res => console.log(res.data));
         
         this.setState({

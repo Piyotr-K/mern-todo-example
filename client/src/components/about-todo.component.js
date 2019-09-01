@@ -4,7 +4,7 @@ export default class EditTodo extends Component {
     render() {
         return (
             <div className="conainer">
-                <p>Some shit lmao</p>
+                <p>That are swears</p>
             </div>
         )
     }

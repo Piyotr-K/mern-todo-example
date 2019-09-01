@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+const db_uri = process.env.MONGODB_URI + '/todos/' || 'http://localhost:4000/todos/';
+
 export default class EditTodo extends Component {
 
     constructor(props) {
@@ -21,7 +23,7 @@ export default class EditTodo extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/todos/'+this.props.match.params.id)
+        axios.get(db_uri + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     todo_description: response.data.todo_description,
@@ -68,7 +70,7 @@ export default class EditTodo extends Component {
             todo_completed: this.state.todo_completed
         };
         console.log(obj);
-        axios.post('http://localhost:4000/todos/update/'+this.props.match.params.id, obj)
+        axios.post(db_uri + this.props.match.params.id, obj)
             .then(res => console.log(res.data));
         
         this.props.history.push('/');
